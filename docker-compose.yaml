@@ -1,10 +1,10 @@
 services:
-env_file:
-  -path: "./db-config.env"
   web:
     build:
       context: .
       dockerfile: Dockerfile.web
+    env_file:
+      -path: "./db-config.env"
     ports:
       - 8080:80
     volumes:
@@ -17,6 +17,8 @@ env_file:
     build:
       context: .
       dockerfile: Dockerfile.db
+    env_file:
+      -path: "./db-config.env"
     networks:
       - app-network
     environment:
