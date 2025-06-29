@@ -3,7 +3,7 @@ FROM ubuntu:24.10
 LABEL description="php + nginx server"
 LABEL maintainer="SoftUni Student"
 
-RUN apt-get update && apt-get install -y nginx php8.3-fpm php8.3 php8.3-cli php-mysql && \
+RUN apt-get update && apt-get install -y nginx php8.3-fpm php8.3 php8.3-cli php-mysql iputils-ping &&  \
  apt-get clean && \
  rm -rf /var/lib/apt/lists/*
 
