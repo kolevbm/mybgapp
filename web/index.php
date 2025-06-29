@@ -51,7 +51,10 @@
    }
 ?>
       </table>
-      print "<small><i>Served by: <b>".gethostname()."</b></i></small>\n";
-    </div>
+<?php
+	print "<small><i>Served by: <b>".gethostname()."</b></i></small>\n";
+?>
+	</div>
+	
   </body>
 </html>
