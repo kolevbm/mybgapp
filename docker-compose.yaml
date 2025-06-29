@@ -16,10 +16,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.db
-    env_file: "db-config.env"
     networks:
       - app-network
     environment:
-      MYSQL_ROOT_PASSWORD: "Password1"
+      MYSQL_ROOT_PASSWORD: /run/secrets/db_password
+    secrets:
+      - db_password
+secrets:
+  db_password:
+    file: db_password.txt
+
 networks:
   app-network:

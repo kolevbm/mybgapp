@@ -44,6 +44,6 @@ $ docker service rm helloworld
 
 docker network create --driver bridge app-network
 
-docker run --net app-network -d -p 8080:80 -v ./web:/var/www/html --name phpImage php-nginx:3.3
+docker run --net app-network -d -p 8080:80 -v ./web:/var/www/html --name phpImage php-nginx:3.4
 
 docker run --net app-network -d --name db -e MYSQL_ROOT_PASSWORD=Password1 img-db:1.5
