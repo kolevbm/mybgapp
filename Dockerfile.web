@@ -9,6 +9,6 @@ RUN apt-get update && apt-get install -y nginx php8.3-fpm php8.3 php8.3-cli php-
 
 EXPOSE 80
 
-COPY ./web/default /etc/nginx/sites-available/default
+COPY ./nginx/default /etc/nginx/sites-available/default
 
 CMD ["sh", "-c", "service php8.3-fpm start && nginx -g 'daemon off;'"]
