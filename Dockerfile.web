@@ -1,0 +1,14 @@
+FROM ubuntu:24.10
+
+LABEL description="php + nginx server"
+LABEL maintainer="SoftUni Student"
+
+RUN apt-get update && apt-get install -y nginx php8.3-fpm php8.3 php8.3-cli php-mysql && \
+ apt-get clean && \
+ rm -rf /var/lib/apt/lists/*
+
+EXPOSE 80
+
+COPY ./web/default /etc/nginx/sites-available/default
+
+CMD ["sh", "-c", "service php8.3-fpm start && nginx -g 'daemon off;'"]

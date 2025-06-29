@@ -1,0 +1,3 @@
+FROM mariadb:12.0.1-noble-rc
+
+COPY ./db/db_setup.sql /docker-entrypoint-initdb.d/init.sql

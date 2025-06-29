@@ -1,0 +1,49 @@
+### Manager node:
+
+$ docker swarm init --advertise-addr 192.168.89.201
+
+docker swarm join --token SWMTKN-1-4w4866f4k9q4ho28oosr7jpznxoaql4utknxtl418pfv4546qh-7p1y7uikr6eg0vfplwmom6mn2 192.168.89.201:2377
+
+$ docker swarm join-token -q worker
+SWMTKN-1-4w4866f4k9q4ho28oosr7jpznxoaql4utknxtl418pfv4546qh-7p1y7uikr6eg0vfplwmom6mn2
+
+$  docker node ls
+
+$ docker swarm join-token -q worker > /vagrant/worker-token
+
+### Worker node:
+
+$ docker swarm join --token $(cat /vagrant/worker-token) 192.168.89.201:2377
+
+
+### Manager node
+# Create a service
+$ docker service create --name helloworld alpine ping docker.com
+cjo37u0xfld9x5resfqs512c6
+overall progress: 1 out of 1 tasks
+1/1: running   [==================================================>]
+verify: Service cjo37u0xfld9x5resfqs512c6 converged
+
+# Scale that service
+$ docker service scale helloworld=5
+helloworld scaled to 5
+overall progress: 5 out of 5 tasks
+1/5: running   [==================================================>]
+2/5: running   [==================================================>]
+3/5: running   [==================================================>]
+4/5: running   [==================================================>]
+5/5: running   [==================================================>]
+verify: Service helloworld converged
+# Remove the service
+$ docker service rm helloworld
+
+
+
+
+#### dockering
+
+docker network create --driver bridge app-network
+
+docker run --net app-network -d -p 8080:80 -v ./web:/var/www/html --name phpImage php-nginx:3.3
+
+docker run --net app-network -d --name db -e MYSQL_ROOT_PASSWORD=Password1 img-db:1.5
