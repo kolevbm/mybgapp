@@ -19,7 +19,5 @@ services:
     env_file: "db-config.env"
     networks:
       - app-network
-    environment:
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
 networks:
   app-network:
